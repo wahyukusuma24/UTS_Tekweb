@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -15,15 +17,9 @@ use App\Http\Controllers\BookController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::view('/','home')->name('home');
-// Route::get('/', [BookController::class, 'index']);
-Route::view('/book','book')->name('book');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('schedule', [ScheduleController::class, 'index'])->name('schedule');
+Route::get('book', [BookController::class, 'index'])->name('book');
 
-Route::get('/schedule', function () {
-    return view('schedule');
-})->middleware(['auth', 'verified'])->name('schedule');
 
 require __DIR__.'/auth.php';
